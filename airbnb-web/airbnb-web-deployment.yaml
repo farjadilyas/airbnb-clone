@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: airbnb-web
+spec:
+  selector:
+    matchLabels:
+      app: airbnb-web # the label for the pods and the deployments
+  template:
+    metadata:
+      labels:
+        app: airbnb-web
+    spec:
+      containers:
+        - name: airbnb-web
+          image: acr23996.azurecr.io/airbnb-web:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000 # the application listens to this port
+          env:
+            - name: REACT_APP_HOTEL_API # the application expects to connect to the API at this endpoint
+              value: http://airbnb-hotel.airbnb.svc.cluster.local
+          resources:
+            requests: # minimum resources required
+              cpu: 250m
+              memory: 64Mi
+            limits: # maximum resources allocated
+              cpu: 500m
+              memory: 512Mi
