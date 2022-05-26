@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package.json ./
 
 # Installing node modules
-RUN npm install --silent
+RUN npm install --legacy-peer-deps
 
 # Copy app src
 COPY . .

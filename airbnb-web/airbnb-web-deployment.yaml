@@ -20,10 +20,3 @@ spec:
           env:
             - name: REACT_APP_HOTEL_API # the application expects to connect to the API at this endpoint
               value: http://airbnb-hotel.airbnb.svc.cluster.local
-          resources:
-            requests: # minimum resources required
-              cpu: 250m
-              memory: 64Mi
-            limits: # maximum resources allocated
-              cpu: 500m
-              memory: 512Mi

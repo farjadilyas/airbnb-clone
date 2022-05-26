@@ -33,6 +33,7 @@ app.use(cookieParser());
 require("./models/mongo/item");
 require("./models/mongo/rate");
 require("./models/mongo/site");
+require("./models/mongo/hotel");
 
 mongoose.Promise = global.Promise;
 
@@ -60,6 +61,7 @@ promise
     var Rate = mongoose.model("Rate");
     var Item = mongoose.model("Item");
     var Site = mongoose.model("Site");
+    var Hotel = mongoose.model("Hotel");
 
     // Check if the items are empty, insert mock data
     Item.count({}, function (err, c) {
@@ -77,6 +79,23 @@ promise
         console.dir(c + " items found in the database. Skipping loading data.");
       }
     });
+
+    // Check if the hotels are empty, insert mock data
+    Hotel.count({}, function (err, c) {
+      if (c == 0) {
+        console.dir("No hotels found in the database. Loading data.");
+        var itemsMock = require("./data/hotels.json");
+        Item.collection.insertMany(itemsMock, function (err, r) {
+          if (err) {
+            console.error("Error inserting hotels: " + err);
+          } else {
+            console.dir("Hotels loaded.");
+          }
+        });
+      } else {
+        console.dir(c + " hotels found in the database. Skipping loading data.");
+      }
+    })
 
     // Check if the sites are empty, insert mock data
     Site.count({}, function (err, c) {

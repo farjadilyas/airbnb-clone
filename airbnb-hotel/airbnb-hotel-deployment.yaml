@@ -23,10 +23,3 @@ spec:
                 secretKeyRef:
                   name: dbsecret # the name of the Kubernetes secret containing the data
                   key: MONGOCONNECTION # the key inside the Kubernetes secret containing the data
-          resources:
-            requests: # minimum resources required
-              cpu: 250m
-              memory: 64Mi
-            limits: # maximum resources allocated
-              cpu: 500m
-              memory: 256Mi

@@ -2,6 +2,10 @@
 # UPDATED CODE PIPELINE
 # ==========================
 
+RESOURCE_GROUP=aksworkshop
+ACR_NAME=acr23996
+NAMESPACE=airbnb
+
 git add .
 git commit --amend --no-edit
 git push origin main --force-with-lease
