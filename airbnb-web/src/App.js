@@ -1,31 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { fetchData } from "./actions/fetch";
-import { useDispatch } from "react-redux";
+import { Navbar, Hotels } from "./components";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { fetchHotels } from './actions/hotel';
 
 const App = () => {
   // Setting Dispatch
   const dispatch = useDispatch();
 
-  // Dummy text data
-  const [messages, setMessages] = useState(null);
+  // Using State
+  const [hotels, setHotels] = useState([]);
 
-  // Dispatching our first action
-  useEffect(() => {
-    dispatch(fetchData(setMessages));
+  // Initial Fetch
+  useEffect(() => { 
+    dispatch(fetchHotels(setHotels))
   }, []);
 
   // Building Layout
   return (
-    <div className="app">
-      <h1>Application is Running!</h1>
-      {messages ? (
-        <>
-          <p>{messages.message}</p>
-        </>
-      ) : (
-        <></>
-      )}
-    </div>
+    <Router>
+      <div>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Hotels hotels={hotels}/>} />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 

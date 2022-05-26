@@ -1,5 +1,5 @@
 import axios from "axios";
 
-const API = axios.create();
+const HOTEL_API = axios.create();
 
-export const initialFetch = () => API.get("/message");
+export const initialFetch = () => HOTEL_API.get("/hotels");

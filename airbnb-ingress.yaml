@@ -11,7 +11,7 @@ spec:
     - host: airbnb.20.227.130.212.nip.io
       http:
         paths:
-          - path: /message
+          - path: /hotels
             pathType: Prefix
             backend:
               service:
