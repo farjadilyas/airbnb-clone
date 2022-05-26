@@ -6,7 +6,6 @@ var mongoose = require("mongoose");
 var Rate = mongoose.model("Rate");
 var Item = mongoose.model("Item");
 var Site = mongoose.model("Site");
-var Hotel = mongoose.model("Hotel");
 
 /* Default GET JSON for Mongo API */
 router.get("/", function(req, res, next) {
@@ -126,16 +125,6 @@ router.post("/rate", function(req, res, next) {
   }
   var response = new jsonResponse("ok", 200, ratings);
   res.json(response).status(response.status);
-});
-
-/* GET Request for Getting all the hotels */
-router.get("/hotels", function(req, res, next) {
-  Hotel.find({})
-    .then(function(hotels) {
-      var response = new jsonResponse("ok", 200, hotels);
-      res.json(response).status(response.status);
-    })
-    .catch(next);
 });
 
 module.exports = router;

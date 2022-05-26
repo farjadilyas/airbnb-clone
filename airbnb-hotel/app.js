@@ -124,6 +124,7 @@ promise
 
 var items = require("./routes/items");
 var index = require("./routes/index");
+var hotels = require("./routes/hotel");
 
 app.get("/message", (req, res, next) =>
   res
@@ -131,8 +132,7 @@ app.get("/message", (req, res, next) =>
     .status(200)
 );
 
-app.use("/", index);
-app.use("/api", items);
+app.use("/", hotels);
 
 app.use(function (req, res, next) {
   var err = new Error("Not Found");
