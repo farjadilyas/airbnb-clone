@@ -45,6 +45,10 @@ const connectOptions = {
   poolSize: 10, // Maintain up to 10 socket connections
   connectTimeoutMS: 10000, // Give up initial connection after 10 seconds
   socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
+  ssl: true,
+  replicaSet: "atlas-7ce6hl-shard-0",
+  authSource: "admin",
+  w: "majority",
 };
 
 if (process.env.MONGODB_URI == undefined) {
@@ -85,7 +89,7 @@ promise
       if (c == 0) {
         console.dir("No hotels found in the database. Loading data.");
         var itemsMock = require("./data/hotels.json");
-        Item.collection.insertMany(itemsMock, function (err, r) {
+        Hotel.collection.insertMany(itemsMock, function (err, r) {
           if (err) {
             console.error("Error inserting hotels: " + err);
           } else {
