@@ -17,5 +17,7 @@ export default makeStyles(() => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'baseline',
+    textDecoration: 'none',
+    color: "black"
   },
 }));

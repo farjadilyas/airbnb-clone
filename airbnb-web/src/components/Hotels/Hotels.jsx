@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid, CircularProgress } from "@material-ui/core";
 
 import Hotel from "./Hotel/Hotel";
 import useStyles from './styles';
 
-const Hotels = ({ hotels, onAddToCart }) => {
+const Hotels = ({ hotels, setHotel }) => {
     // Using Styles
     const classes = useStyles();
+
+    // Use Effect to reset hotel
+    useEffect(() => {
+        setHotel(null);
+    }, [])
 
     // Loading
     if (!hotels.length) {
@@ -27,7 +32,7 @@ const Hotels = ({ hotels, onAddToCart }) => {
             <Grid container justify="center" spacing={4}>
                 { hotels.map((hotel) => (
                     <Grid item key={hotel.id} xs={12} sm={6} ms={4} lg={3}>
-                        <Hotel hotel={hotel} onAddToCart={onAddToCart} />
+                        <Hotel hotel={hotel} setHotel={setHotel} />
                     </Grid>
                 )) }
             </Grid>

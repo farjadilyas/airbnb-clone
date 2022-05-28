@@ -1,0 +1,10 @@
+[
+    {
+        "booking": "628ff9c2632a3c0984ca54f6",
+        "basePrice": 4600,
+        "numNights": 3,
+        "totalPrice": 13800,
+        "paymentDate": null,
+        "status": "PENDING"
+    }
+]

@@ -5,7 +5,18 @@
         "img":"https://a0.muscache.com/im/pictures/30c00b46-d66d-4d89-b9ca-3cb2d9d5f461.jpg?im_w=720",
         "ratings":4.64,
         "beds":3,
-        "price":383
+        "price":383,
+        "host":"628fcfee44a0822ea092a430",
+        "images": [
+            "https://a0.muscache.com/im/pictures/30c00b46-d66d-4d89-b9ca-3cb2d9d5f461.jpg?im_w=720",
+            "https://a0.muscache.com/im/pictures/prohost-api/Hosting-31313291/original/ec48d51b-06d9-426d-9066-2583f32f353a.jpeg?im_w=960",
+            "https://a0.muscache.com/im/pictures/prohost-api/Hosting-31313291/original/f8ccb06d-98c6-44a2-808d-b85f319c6262.jpeg?im_w=720",
+            "https://a0.muscache.com/im/pictures/prohost-api/Hosting-31313291/original/6c41b56d-c4ab-46f2-ad8d-404defac155d.jpeg?im_w=720",
+            "https://a0.muscache.com/im/pictures/prohost-api/Hosting-31313291/original/bc0db32d-9083-4e59-b23f-773622b4d97b.jpeg?im_w=720"
+        ],
+        "description": "Amazing views, blissful sunsets, ocean breezes, and the sound of waves lapping at the shoreline await you at this fabulous, recently-built, pet-friendly, beachfront home located directly on the Gulf of Mexico. \"\"Villa Delphinus\"\" (named for the leaping dolphin constellation) was built 2008 and has a large, wrap-around, partially covered deck for panoramic views of the Gulf and Bay. The interior is bathed in that magical seaside light and features a vaulted living room, bamboo flooring, 2 bedrooms with queen beds, a third bedroom with a duo-bunk, and a sleeper sofa in the living room, 2 porcelain tiled bathrooms, and spacious, open living, dining, and kitchen areas. And, like all our great Dauphin Island vacation rentals, the kitchen is fully outfitted with everything you'll need for a great vacation. Please be advised of the following information prior to placing a Reservation: Minimum Age for the Primary Renter is 25 and Primary Renter must be present for the entire stay. Maximum Occupancy numbers include Children and cannot be exceeded at any time. All of our Homes are Non-Smoking. Some homes are Pet-friendly, with prior written permission, and a Pet Fee paid. A signed Rental Agreement is Required, which contains additional Rules and Guidance. We do not allow Weddings, Receptions or Parties at our Properties.",
+        "address": "Dauphin Island, Alabama, United States",
+        "location": [-88.1889832, 30.2486856]
     },
     {
         "uid":2,
@@ -13,7 +24,18 @@
         "img":"https://a0.muscache.com/im/pictures/monet/Select-34444025/original/944d56fa-e9a6-48fb-a9c5-e4e3778042d7?im_w=720",
         "ratings":4.95,
         "beds":3,
-        "price":485
+        "price":485,
+        "host":"628fcfee44a0822ea092a430",
+        "images": [
+            "https://a0.muscache.com/im/pictures/monet/Select-34444025/original/944d56fa-e9a6-48fb-a9c5-e4e3778042d7?im_w=720",
+            "https://a0.muscache.com/im/pictures/monet/Select-34444025/original/622a7f24-1a55-4468-82b5-fb3abc83020f?im_w=960",
+            "https://a0.muscache.com/im/pictures/monet/Select-34444025/original/68e860ea-a095-4651-b911-0394d9844316?im_w=720",
+            "https://a0.muscache.com/im/pictures/monet/Select-34444025/original/1a3200a4-ad68-4d65-8a82-f738d548d043?im_w=1200",
+            "https://a0.muscache.com/im/pictures/monet/Select-34444025/original/bbc08ed9-3415-4f38-ae72-1fbee28e6b8d?im_w=1200"
+        ],
+        "description": "Immerse yourself in the wilderness, still within reach of civilization! WonderINN is literally a hidden gem; the unique design of the mirrored glass blends into the landscape so you can retreat to comfort and luxury as you watch the world pass by. WonderINN is tucked away in the quiet nature reserve of Nordre Øyeren, only 25 minutes drive from the center of Oslo. You’ll experience a unique ecosystem where two of Norway’s longest rivers meet, home to more fish and bird species than almost anywhere else in the country. Fishing, bird watching, hiking, biking, canoeing and boat trips are popular activities in the area. We get frequent visits from small deer, squirrels and more than 270 different bird species, including many migrating birds.",
+        "address": "Rælingen, Akershus, Norway",
+        "location": [11.1056907, 59.9033195]
     },
     {
         "uid":3,
@@ -21,6 +43,36 @@
         "img":"https://a0.muscache.com/im/pictures/miso/Hosting-47771464/original/e8f6758f-1348-43f6-832a-066a90523068.jpeg?im_w=720",
         "ratings":5.0,
         "beds":5,
-        "price":356
+        "price":356,
+        "host":"628fcfee44a0822ea092a430",
+        "images":[
+            "https://a0.muscache.com/im/pictures/miso/Hosting-47771464/original/e8f6758f-1348-43f6-832a-066a90523068.jpeg?im_w=720",
+            "https://a0.muscache.com/im/pictures/miso/Hosting-47771464/original/e8f6758f-1348-43f6-832a-066a90523068.jpeg?im_w=1200",
+            "https://a0.muscache.com/im/pictures/miso/Hosting-47771464/original/100893f9-bc4b-4187-9e43-7542259767b3.jpeg?im_w=720",
+            "https://a0.muscache.com/im/pictures/miso/Hosting-47771464/original/e93674c1-f724-4c5a-8ed3-51511db94daa.jpeg?im_w=1200",
+            "https://a0.muscache.com/im/pictures/miso/Hosting-47771464/original/57b55901-a909-4610-af39-0b5a7ee19e9a.jpeg?im_w=1200"
+        ],
+        "description": "Spend a night under the stars. Named after the birds that nest on our property, Skylark Cabin is architecturally inspired accommodation, built in 2020, and thoughtfully designed to make the most of the awe-inspiring vistas that surround you. Our cabin is equipped with all the amenities you need for a comfortable, luxurious getaway for two, but also comes with that sense of simplicity that gives you the space you need to feel blissfully removed from the rush of every day. Private, luxury accommodation for two. Whether it's retreat and relaxation you seek, or action and adventure, we’ve ensured that Skylark Cabin has everything you need for an unforgettable getaway.. Thoughtful, modern design makes Skylark Cabin a unique experience in itself. We’ve created a private, luxury small home that gives you the space you need to comfortably remove yourself from the rush of everyday life.. A day of outdoor activities is easy from your base . Soak up the serenity - or soak away those aches from a day of action - in luxury and under the stars in the huge outdoor stainless steel bath, invitingly warm with gas-heated hot water. Enjoy breakfast in our landscaped gardens, or dinner by the log fire.. Every aspect of Skylark Cabin has been considered to offer a private, unique experience that allows you to make the most of this magical region and the incredible scenery that surrounds you.. We’d love to welcome you to experience Skylark Cabin for yourself.",
+        "address": "Twizel, Canterbury, New Zealand",
+        "location": [170.0111407, -44.2474384]
+    },
+    {
+        "uid": 4,
+        "name": "Noku Beach House",
+        "img": "https://a0.muscache.com/im/pictures/monet/Luxury-28540017/original/42cde801-3346-41c6-a63a-40bd5a2d5867?im_w=1200",
+        "ratings": 4.3,
+        "beds": 10,
+        "price": 4000,
+        "host": "628fcfee44a0822ea092a430",
+        "images": [
+            "https://a0.muscache.com/im/pictures/monet/Luxury-28540017/original/42cde801-3346-41c6-a63a-40bd5a2d5867?im_w=1200",
+            "https://a0.muscache.com/im/pictures/24fc1fd5-44b4-4cdb-a53b-3f452201d6e1.jpg?im_w=720",
+            "https://a0.muscache.com/im/pictures/33054844-4920-46f5-857a-c514a453e79c.jpg?im_w=720",
+            "https://a0.muscache.com/im/pictures/2a7fe38e-185d-46c3-903b-c8005b270ca5.jpg?im_w=1200",
+            "https://a0.muscache.com/im/pictures/60b844b5-0e39-4b5b-88a6-389a6bb56a5e.jpg?im_w=1200"
+        ],
+        "description": "A 30-foot infinity pool reaches toward the sea at this wood-clad villa on Seminyak Beach. A walled garden and attentive staff look onto the scene, with interiors by Alex Zabotto-Bentley adding potted plants, maritime sculptures, and designer furnishings. Order drinks at the wet bar, soak up views from the balcony, and splurge on a session in the private spa. Gado Gado Restaurant is steps away.",
+        "address": "Kabupaten Badung, Bali, Indonesia",
+        "location": [115.157784, -8.6908984]
     }
 ]

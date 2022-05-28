@@ -1,39 +1,47 @@
 import React from 'react';
-import { Card, CardMedia, CardContent, CardActions, Typography, IconButton } from '@material-ui/core';
-import { Book } from '@material-ui/icons';
+import { useDispatch } from 'react-redux';
+
+import { Card, CardMedia, CardContent, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { fetchHotel } from '../../../actions/hotel';
 
 import useStyles from './styles';
 
-const Hotel = ({ hotel, onAddToCart }) => {
+const Hotel = ({ hotel, setHotel }) => {
 
     // Using Styles
     const classes = useStyles();
 
+    // Using Dispatch
+    const dispatch = useDispatch();
+
+    // Loading Hotel Data
+    const loadHotelData = () => {
+        dispatch(fetchHotel(hotel._id, setHotel));
+    }
+
     // Building Layout
     return (
         <Card className={classes.root}>
-            <CardMedia className={classes.media} image={hotel.img} title={hotel.name} />
-            <CardContent>
-                <div className={classes.cardContent}>
-                    <Typography variant="h6" gutterBottom>
-                        {hotel.name}
+            <Link to="/hotel" onClick={loadHotelData} style={{ textDecoration: 'none' }}>
+                <CardMedia className={classes.media} image={hotel.img} title={hotel.name} />
+                <CardContent>
+                    <div className={classes.cardContent}>
+                        <Typography variant="h6" gutterBottom>
+                            {hotel.name}
+                        </Typography>
+                        <Typography variant="h8">
+                            {hotel.ratings}★
+                        </Typography>
+                    </div>
+                    <Typography variant="body2" color="textSecondary">
+                        {hotel.beds} beds
                     </Typography>
-                    <Typography variant="h8">
-                        {hotel.ratings}★
+                    <Typography variant="body2" color="textSecondary">
+                        ${hotel.price}/night
                     </Typography>
-                </div>
-                <Typography variant="body2" color="textSecondary">
-                    {hotel.beds} beds
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
-                    ${hotel.price}/night
-                </Typography>
-            </CardContent>
-            <CardActions disableSpacing className={classes.cardActions}>
-                <IconButton aria-label='Book' onClick={() => onAddToCart(hotel.id, 1)}>
-                    <Book />
-                </IconButton>
-            </CardActions>
+                </CardContent>
+            </Link>
         </Card>
     )
 };

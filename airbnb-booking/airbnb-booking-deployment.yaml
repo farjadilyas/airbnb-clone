@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: airbnb-booking
+spec:
+    selector:
+        matchLabels:
+            app: airbnb-booking
+    template:
+        metadata:
+            labels:
+                app: airbnb-booking # the label for the pods and the deployments
+        spec:
+            containers:
+                - name: airbnb-booking
+                  image: acr23996.azurecr.io/airbnb-booking:v1 # IMPORTANT: update with your own repository
+                  imagePullPolicy: Always
+                  ports:
+                      - containerPort: 3000 # the application listens to this port
+                  env:
+                      - name: MONGODB_URI # the application expects to find the MongoDB connection details in this environment variable
+                        valueFrom:
+                            secretKeyRef:
+                                name: dbsecret # the name of the Kubernetes secret containing the data
+                                key: MONGOCONNECTION # the key inside the Kubernetes secret containing the data
+                      - name: PAYMENT_API
+                        value: http://airbnb-payment:80

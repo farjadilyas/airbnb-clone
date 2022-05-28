@@ -1,0 +1,20 @@
+1. airbnb-hotel
+    - endpoints:
+        - / - Default
+        - /hotels - GET request
+
+2. airbnb-web
+3. airbnb-user
+    - / - Default
+    - /login - POST
+    - /signup - POST 
+    - /fetch - POST *
+    - /bookings - POST
+
+4. airbnb-booking
+    - / - Default
+    - /createBooking - POST
+
+5. airbnb-payment
+    - / - Default
+    - /payment - POST   *

@@ -43,7 +43,7 @@ VERSION=$(az aks get-versions \
 echo $VERSION
 
 # Creating Cluster Name
-AKS_CLUSTER_NAME=aksworkshop-$RANDOM
+AKS_CLUSTER_NAME=aksworkshop-2598
 echo $AKS_CLUSTER_NAME
 
 # Creating the Cluster
@@ -82,7 +82,7 @@ kubectl get namespace
 # ===============================================
 
 # Create randomized ACR name
-ACR_NAME=acr$RANDOM
+ACR_NAME=acr23996
 
 # Create registry
 az acr create \
@@ -100,15 +100,35 @@ az acr build \
     --resource-group $RESOURCE_GROUP \
     --registry $ACR_NAME \
     --image airbnb-hotel:v1 .
-cd ~
+cd ..
 
-# Clone, build ratings-web image and push to ACR
-cd airbnb-clone/airbnb-web
+cd airbnb-clone/airbnb-booking
+az acr build \
+    --resource-group $RESOURCE_GROUP \
+    --registry $ACR_NAME \
+    --image airbnb-booking:v1 .
+cd ..
+
+cd airbnb-clone/airbnb-payment
+az acr build \
+    --resource-group $RESOURCE_GROUP \
+    --registry $ACR_NAME \
+    --image airbnb-payment:v1 .
+cd ..
+
+cd airbnb-clone/airbnb-user
+az acr build \
+    --resource-group $RESOURCE_GROUP \
+    --registry $ACR_NAME \
+    --image airbnb-user:v1 .
+cd ..
+
+cd airbnb-web
 az acr build \
     --resource-group $RESOURCE_GROUP \
     --registry $ACR_NAME \
     --image airbnb-web:v1 .
-cd ~
+cd ..
 
 # Check images in repo
 az acr repository list --name $ACR_NAME --output table
@@ -141,33 +161,27 @@ kubectl create secret generic dbsecret \
 # Name of mongodb service - ratings-mongodb.ratingsapp.svc.cluster.local
 
 # ====================================
-# PART 4: Deploy API to AKS Cluster
+# PART 4: Deploy all microservices to AKS Cluster
 # ====================================
 
-# create the deployment through ratings-api-deployment.yaml file 
-kubectl apply --namespace $NAMESPACE -f airbnb-hotel-deployment.yaml
+# create the deployments through <microservice-name>-deployment.yaml files 
+kubectl apply --namespace $NAMESPACE -f airbnb-hotel/airbnb-hotel-deployment.yaml
+kubectl apply --namespace $NAMESPACE -f airbnb-hotel/airbnb-hotel-service.yaml
 
-# see the pods roll out
-kubectl get pods --namespace $NAMESPACE -l app=airbnb-hotel -w
+kubectl apply --namespace $NAMESPACE -f airbnb-hotel/airbnb-booking-deployment.yaml
+kubectl apply --namespace $NAMESPACE -f airbnb-hotel/airbnb-booking-service.yaml
 
-# read the file ratings-api-service.yaml and see that the container ports 3000 are exposed with port 80 to be reachable from inside the cluster  
-# expose the ratings-api through a ClusterIP service
-# once deployment is done, service uses the name to add the port of deployment to load balancer
-kubectl apply --namespace $NAMESPACE -f airbnb-hotel-service.yaml
+kubectl apply --namespace $NAMESPACE -f airbnb-hotel/airbnb-payment-deployment.yaml
+kubectl apply --namespace $NAMESPACE -f airbnb-hotel/airbnb-payment -service.yaml
 
-# check the service installation 
-kubectl get service airbnb-hotel --namespace $NAMESPACE
-kubectl get endpoints airbnb-hotel --namespace $NAMESPACE
+kubectl apply --namespace $NAMESPACE -f airbnb-hotel/airbnb-user-deployment.yaml
+kubectl apply --namespace $NAMESPACE -f airbnb-hotel/airbnb-user-service.yaml
 
-# ================================================
-# PART 5: Deploying front-end API to AKS Cluster
-# ================================================
+kubectl apply --namespace $NAMESPACE -f airbnb-web/airbnb-web-deployment.yaml
+kubectl apply --namespace $NAMESPACE -f airbnb-web/airbnb-web-service.yaml
 
-kubectl apply --namespace $NAMESPACE -f airbnb-web-deployment.yaml
-kubectl apply --namespace $NAMESPACE -f airbnb-web-service.yaml
-
-kubectl get pods --namespace $NAMESPACE -l app=airbnb-web 
-kubectl get deploy --namespace $NAMESPACE -l app=airbnb-web 
+kubectl get pods --namespace $NAMESPACE
+kubectl get deploy --namespace $NAMESPACE
 
 kubectl get service airbnb-web --namespace $NAMESPACE
 kubectl get endpoints airbnb-web --namespace $NAMESPACE
@@ -194,7 +208,7 @@ az acr import --name $REGISTRY_NAME --source $SOURCE_REGISTRY/$DEFAULTBACKEND_IM
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 
 # Set variable for ACR location to use for pulling images
-ACR_URL=acr23785.azurecr.io
+ACR_URL=$ACR_NAME.azurecr.io
 
 # Use Helm to deploy an NGINX ingress controller
 helm install nginx-ingress ingress-nginx/ingress-nginx \
@@ -226,56 +240,10 @@ kubectl --namespace $NAMESPACE get services -o wide -w nginx-ingress-ingress-ngi
 
 ## ENSURE APPLY THE CONTAINER'S SERVICE & DEPLOYMENT YAML FILES
 
+# !!! ENSURE REPLACE EXTERNAL IP IN INGRESS
+
 # Apply ingress file
-cd airbnb-clone
 kubectl apply -f airbnb-ingress.yaml --namespace $NAMESPACE
 
 # Check and get URL
 kubectl get ingress --all-namespaces
-
-# ===========================================================
-# PART CURSED: Configure K8 Ingress controller using NGINX
-# ===========================================================
-
-# create the nginx-ingress namespace  
-kubectl create namespace ingress
-
-# add the "stable" repo 
-helm repo add stable https://kubernetes-charts.storage.googleapis.com/
-
-# check the repo 
-helm search repo stable
-# ---> list all charts stable provide
-# in the following command we deploy the nginx-ingress using the nginx-ingress chart, set the replica count to 2 for redundancy
-# set the nodeselector to linux to schedue the ingress controller only on linux nodes
-helm install nginx-ingress stable/nginx-ingress \
-    --namespace ingress \
-    --set controller.replicaCount=2 \
-    --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
-    --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux
-
-# check the nginx-ingress deployment
-kubectl get service nginx-ingress-controller --namespace ingress 
-
-# ---> notice here that the EXTERNAL IP is given a Public IP it means that the service type is set to "LoadBalancer"
-# EXTERNAL IP OBTAINED IS:
-# NAME                       TYPE           CLUSTER-IP   EXTERNAL-IP   PORT(S)                      AGE
-# nginx-ingress-controller   LoadBalancer   10.2.0.154  20.70.16.36   80:30890/TCP,443:31465/TCP   37s
-
-# IF THE WEB SERVICE WAS CREATED WITH LoadBalancer..
-kubectl delete service --namespace $NAMESPACE ratings-web
-kubectl apply --namespace ingress -f ratings-web-ingress.yaml
-
-# create the ingress in "ratingsapp" namespace 
-kubectl apply --namespace $NAMESPACE -f ratings-web-ingress.yaml
-# ---> in the 'rules' field we match the ingress controller with backend that is the frontend, thus, it will send http requests to the ratings-web 
-
-# ingress.networking.k8s.io/ratings-web-ingress created
-# FINALLY: Ingress url: frontend.20-70-16-36.nip.io
-
-# TO RESET AND TRY AGAIN
-kubectl delete ingress --namespace $NAMESPACE ratings-web-ingress
-kubectl apply --namespace $NAMESPACE -f ratings-web-ingress.yaml
-
-# the web app is now reachable via the browser through "http://frontend.13-68-177-68.nip.io" set your EXTERNAL IP address resulted in the last command 
-# (C) 2022 GitHub, Inc.

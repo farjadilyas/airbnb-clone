@@ -19,6 +19,27 @@ spec:
                 name: airbnb-hotel
                 port:
                   number: 80
+          - path: /airbnb-user(?:/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: airbnb-user
+                port:
+                  number: 80
+          - path: /airbnb-booking(?:/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: airbnb-booking
+                port:
+                  number: 80
+          - path: /airbnb-payment(?:/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: airbnb-payment
+                port:
+                  number: 80
           - path: /(.*)
             pathType: Prefix
             backend:

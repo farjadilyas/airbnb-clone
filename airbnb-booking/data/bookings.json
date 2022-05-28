@@ -1,0 +1,11 @@
+[
+    {
+        "user": "628fe1704ea5b5468cabdaa4",
+        "host": "628fcfee44a0822ea092a430",
+        "hotel": "628f72aefbd4e7133c89531e",
+        "checkIn": "2018-01-05T18:00:01.984Z",
+        "checkOut": "2018-01-05T18:00:01.984Z",
+        "numGuests": { "adults": 2, "children": 0, "infants": 0, "pets": 1 },
+        "active": false
+    }
+]
