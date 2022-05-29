@@ -31,19 +31,25 @@ require("./models/mongo/user");
 
 mongoose.Promise = global.Promise;
 
+// const connectOptions = {
+//   useMongoClient: true,
+//   autoIndex: false, // Don't build indexes
+//   reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
+//   reconnectInterval: 500, // Reconnect every 500ms
+//   poolSize: 10, // Maintain up to 10 socket connections
+//   connectTimeoutMS: 10000, // Give up initial connection after 10 seconds
+//   socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
+//   ssl: true,
+//   replicaSet: "atlas-7ce6hl-shard-0",
+//   authSource: "admin",
+//   w: "majority",
+// };
+
 const connectOptions = {
   useMongoClient: true,
-  autoIndex: false, // Don't build indexes
-  reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
-  reconnectInterval: 500, // Reconnect every 500ms
-  poolSize: 10, // Maintain up to 10 socket connections
-  connectTimeoutMS: 10000, // Give up initial connection after 10 seconds
-  socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
   ssl: true,
-  replicaSet: "atlas-7ce6hl-shard-0",
-  authSource: "admin",
-  w: "majority",
-};
+  replicaSet: "globaldb"
+}
 
 if (process.env.MONGODB_URI == undefined) {
   console.error(
@@ -71,6 +77,7 @@ promise
           }
         });
       } else {
+        console.dir(err);
         console.dir(c + " hotels found in the database. Skipping loading data.");
       }
     })
